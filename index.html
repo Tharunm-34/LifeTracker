@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LifeTrack - Daily Activity & Wellness Dashboard</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>LifeTrack</span>
+        </div>
+
+        <nav>
+
+            <button class="nav-btn active" onclick="showPage('dashboard')">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-btn" onclick="showPage('daily')">
+                <i class="fa-solid fa-calendar-day"></i>
+                <span>Daily Entry</span>
+            </button>
+
+            <button class="nav-btn" onclick="showPage('nutrition')">
+                <i class="fa-solid fa-utensils"></i>
+                <span>Nutrition</span>
+            </button>
+
+            <button class="nav-btn" onclick="showPage('planner')">
+                <i class="fa-solid fa-list-check"></i>
+                <span>Smart Planner</span>
+            </button>
+
+            <button class="nav-btn" onclick="showPage('focus')">
+                <i class="fa-solid fa-stopwatch"></i>
+                <span>Focus Timer</span>
+            </button>
+
+            <button class="nav-btn" onclick="showPage('goals')">
+                <i class="fa-solid fa-bullseye"></i>
+                <span>Daily Goals</span>
+            </button>
+
+            <button class="nav-btn" onclick="showPage('history')">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>History</span>
+            </button>
+
+            <button class="nav-btn" onclick="showPage('analytics')">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Analytics</span>
+            </button>
+
+            <button class="nav-btn" onclick="showPage('wellness')">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span>Wellness</span>
+            </button>
+
+            <button class="nav-btn" onclick="showPage('journal')">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Daily Journal</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="system-status">
+                <span class="status-dot"></span>
+                <span>LifeTrack Active</span>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main">
+
+        <!-- =================================================
+             DASHBOARD
+        ================================================== -->
+
+        <section id="dashboard" class="page active">
+
+            <div class="hero">
+
+                <div>
+                    <span class="section-label">DIGITAL WELLNESS</span>
+
+                    <h1>
+                        Your Life.
+                        <span>Tracked.</span>
+                    </h1>
+
+                    <p>
+                        Monitor your daily activities, productivity,
+                        nutrition, health and personal growth.
+                    </p>
+                </div>
+
+                <div class="hero-clock">
+
+                    <div id="liveDate">--</div>
+                    <strong id="liveClock">--:--:--</strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- DASHBOARD STATS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+
+                    <span>Study</span>
+                    <strong id="dashStudy">0 min</strong>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-dumbbell"></i>
+                    </div>
+
+                    <span>Exercise</span>
+                    <strong id="dashExercise">0 min</strong>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+
+                    <span>Learning</span>
+                    <strong id="dashLearning">0 min</strong>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-bed"></i>
+                    </div>
+
+                    <span>Sleep</span>
+                    <strong id="dashSleep">0 min</strong>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+
+                    <span>Calories</span>
+                    <strong id="dashCalories">0 kcal</strong>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+
+                    <span>Wellness</span>
+                    <strong id="dashWellness">0 / 100</strong>
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCTIVITY + WELLNESS -->
+
+            <div class="dashboard-grid">
+
+                <div class="glass-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+                            <span class="section-label">PRODUCTIVITY</span>
+                            <h2>Today's Balance</h2>
+                        </div>
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                    </div>
+
+                    <div class="productivity-layout">
+
+                        <div class="productivity-ring"
+                             id="productivityRing">
+
+                            <div>
+                                <strong id="productivityPercent">0%</strong>
+                                <span>productive</span>
+                            </div>
+
+                        </div>
+
+                        <div class="productivity-info">
+
+                            <div>
+                                <span>Productive Time</span>
+                                <strong id="productiveTime">0 min</strong>
+                            </div>
+
+                            <div>
+                                <span>Screen Time</span>
+                                <strong id="screenTime">0 min</strong>
+                            </div>
+
+                            <div>
+                                <span>Completed Goals</span>
+                                <strong id="completedGoals">0 / 6</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="glass-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+                            <span class="section-label">WELLNESS</span>
+                            <h2>Daily Wellness</h2>
+                        </div>
+
+                        <i class="fa-solid fa-heart"></i>
+
+                    </div>
+
+                    <div class="mini-score">
+
+                        <strong id="dashboardWellnessScore">0</strong>
+                        <span>/100</span>
+
+                    </div>
+
+                    <h3 id="dashboardWellnessStatus">
+                        Start recording your activities
+                    </h3>
+
+                    <p id="dashboardWellnessMessage">
+                        Add activities to receive personalized analysis.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SMART COACH -->
+
+            <div class="smart-coach">
+
+                <div class="coach-icon">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+
+                <div>
+                    <span class="section-label">SMART COACH</span>
+
+                    <h2 id="coachTitle">
+                        Your personal coach is ready.
+                    </h2>
+
+                    <p id="coachMessage">
+                        Start recording your routine to receive suggestions.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- HABITS / MOOD / WATER -->
+
+            <div class="three-grid">
+
+                <div class="glass-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+                            <span class="section-label">CONSISTENCY</span>
+                            <h2>Habit Streak</h2>
+                        </div>
+
+                        <i class="fa-solid fa-fire"></i>
+
+                    </div>
+
+                    <div class="streak-number">
+
+                        <strong id="streakCount">0</strong>
+                        <span>days</span>
+
+                    </div>
+
+                    <div class="streak-days" id="streakDays"></div>
+
+                </div>
+
+
+                <div class="glass-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+                            <span class="section-label">HYDRATION</span>
+                            <h2>Water Tracker</h2>
+                        </div>
+
+                        <i class="fa-solid fa-droplet"></i>
+
+                    </div>
+
+                    <div class="water-count">
+
+                        <strong id="waterCount">0</strong>
+                        <span>/ 8 glasses</span>
+
+                    </div>
+
+                    <div class="progress">
+                        <div id="waterBar"></div>
+                    </div>
+
+                    <button class="small-btn" onclick="addWater()">
+                        + Add Glass
+                    </button>
+
+                    <button class="small-btn danger-btn"
+                            onclick="removeWater()">
+                        − Remove
+                    </button>
+
+                </div>
+
+
+                <div class="glass-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+                            <span class="section-label">MOOD</span>
+                            <h2>How do you feel?</h2>
+                        </div>
+
+                        <i class="fa-regular fa-face-smile"></i>
+
+                    </div>
+
+                    <div class="mood-grid">
+
+                        <button onclick="selectMood('😄','Excellent')">😄</button>
+                        <button onclick="selectMood('🙂','Good')">🙂</button>
+                        <button onclick="selectMood('😐','Okay')">😐</button>
+                        <button onclick="selectMood('😔','Low')">😔</button>
+                        <button onclick="selectMood('😴','Tired')">😴</button>
+
+                    </div>
+
+                    <p>
+                        Selected:
+                        <strong id="selectedMood">Not selected</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUOTE -->
+
+            <div class="quote-card">
+
+                <i class="fa-solid fa-quote-left"></i>
+
+                <p id="dailyQuote">
+                    Success is the sum of small efforts,
+                    repeated day in and day out.
+                </p>
+
+                <span id="quoteAuthor">— Robert Collier</span>
+
+                <button onclick="changeQuote()">
+                    New Quote
+                </button>
+
+            </div>
+
+
+            <!-- WEATHER -->
+
+            <div class="weather-card">
+
+                <div class="weather-icon">
+                    <i class="fa-solid fa-cloud-sun"></i>
+                </div>
+
+                <div>
+                    <span class="section-label">WEATHER</span>
+
+                    <h2>Weather unavailable</h2>
+
+                    <p>
+                        Weather integration can be connected later.
+                    </p>
+
+                    <small>Chennai / Tamil Nadu</small>
+                </div>
+
+            </div>
+
+
+            <!-- SMART INSIGHT -->
+
+            <div class="smart-insight-card">
+
+                <div class="smart-icon">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+
+                <div>
+
+                    <span class="section-label">
+                        SMART DAILY INSIGHT
+                    </span>
+
+                    <h2 id="smartInsightTitle">
+                        Your personal dashboard is ready.
+                    </h2>
+
+                    <p id="smartInsightText">
+                        Add activities to receive personalized insights.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- TODAY ACTIVITIES -->
+
+            <div class="glass-panel">
+
+                <div class="panel-title">
+                    <h2>Today's Activities</h2>
+
+                    <button class="small-btn"
+                            onclick="showPage('daily')">
+                        + Add Activity
+                    </button>
+                </div>
+
+                <div id="todayActivities"
+                     class="activity-list">
+
+                    <p class="empty">
+                        No activities recorded today.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DAILY ENTRY
+        ================================================== -->
+
+        <section id="daily" class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">DAILY INPUT</span>
+
+                <h1>Daily Activity Entry</h1>
+
+                <p>
+                    Record your activities with exact timings.
+                </p>
+
+            </div>
+
+
+            <div class="entry-grid">
+
+
+                <!-- STUDY -->
+
+                <div class="form-card">
+
+                    <h2>
+                        <i class="fa-solid fa-book"></i>
+                        Study Time
+                    </h2>
+
+                    <label>Date</label>
+                    <input type="date" id="studyDate">
+
+                    <label>Subject</label>
+                    <input type="text"
+                           id="studySubject"
+                           placeholder="Example: Java">
+
+                    <label>Start Time</label>
+                    <input type="time" id="studyStart">
+
+                    <label>End Time</label>
+                    <input type="time" id="studyEnd">
+
+                    <button onclick="saveStudy()">
+                        Save Study
+                    </button>
+
+                </div>
+
+
+                <!-- EXERCISE -->
+
+                <div class="form-card">
+
+                    <h2>
+                        <i class="fa-solid fa-dumbbell"></i>
+                        Exercise
+                    </h2>
+
+                    <label>Date</label>
+                    <input type="date" id="exerciseDate">
+
+                    <label>Status</label>
+
+                    <select id="exerciseStatus"
+                            onchange="toggleExercise()">
+
+                        <option value="Done">Done</option>
+                        <option value="Not Done">Not Done</option>
+
+                    </select>
+
+                    <div id="exerciseFields">
+
+                        <label>Exercise Type</label>
+
+                        <input type="text"
+                               id="exerciseType"
+                               placeholder="Walking / Gym / Running">
+
+                        <label>Start Time</label>
+                        <input type="time" id="exerciseStart">
+
+                        <label>End Time</label>
+                        <input type="time" id="exerciseEnd">
+
+                    </div>
+
+                    <button onclick="saveExercise()">
+                        Save Exercise
+                    </button>
+
+                </div>
+
+
+                <!-- LEARNING -->
+
+                <div class="form-card">
+
+                    <h2>
+                        <i class="fa-solid fa-lightbulb"></i>
+                        Learning New Things
+                    </h2>
+
+                    <label>Date</label>
+                    <input type="date" id="learningDate">
+
+                    <label>Status</label>
+
+                    <select id="learningStatus"
+                            onchange="toggleLearning()">
+
+                        <option value="Done">Done</option>
+                        <option value="Not Done">Not Done</option>
+
+                    </select>
+
+                    <div id="learningFields">
+
+                        <label>What did you learn?</label>
+
+                        <input type="text"
+                               id="learningTopic"
+                               placeholder="Example: Java Arrays">
+
+                        <label>Start Time</label>
+                        <input type="time" id="learningStart">
+
+                        <label>End Time</label>
+                        <input type="time" id="learningEnd">
+
+                    </div>
+
+                    <button onclick="saveLearning()">
+                        Save Learning
+                    </button>
+
+                </div>
+
+
+                <!-- ENTERTAINMENT -->
+
+                <div class="form-card">
+
+                    <h2>
+                        <i class="fa-solid fa-gamepad"></i>
+                        Entertainment / Gaming
+                    </h2>
+
+                    <label>Date</label>
+                    <input type="date" id="entertainmentDate">
+
+                    <label>Type / Game</label>
+
+                    <input type="text"
+                           id="entertainmentType"
+                           placeholder="Free Fire / Movie">
+
+                    <label>Start Time</label>
+                    <input type="time" id="entertainmentStart">
+
+                    <label>End Time</label>
+                    <input type="time" id="entertainmentEnd">
+
+                    <button onclick="saveEntertainment()">
+                        Save Entertainment
+                    </button>
+
+                </div>
+
+
+                <!-- SOCIAL MEDIA -->
+
+                <div class="form-card">
+
+                    <h2>
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        Social Media
+                    </h2>
+
+                    <label>Date</label>
+                    <input type="date" id="socialDate">
+
+                    <label>Platform</label>
+
+                    <select id="socialPlatform">
+
+                        <option>Instagram</option>
+                        <option>WhatsApp</option>
+                        <option>YouTube</option>
+                        <option>Other</option>
+
+                    </select>
+
+                    <label>Start Time</label>
+                    <input type="time" id="socialStart">
+
+                    <label>End Time</label>
+                    <input type="time" id="socialEnd">
+
+                    <button onclick="saveSocial()">
+                        Save Social Media
+                    </button>
+
+                </div>
+
+
+                <!-- SLEEP -->
+
+                <div class="form-card">
+
+                    <h2>
+                        <i class="fa-solid fa-bed"></i>
+                        Sleep Cycle
+                    </h2>
+
+                    <label>Date</label>
+                    <input type="date" id="sleepDate">
+
+                    <label>Sleep Time</label>
+                    <input type="time" id="sleepStart">
+
+                    <label>Wake Time</label>
+                    <input type="time" id="sleepEnd">
+
+                    <p class="hint">
+                        Cross-midnight sleep is supported.
+                    </p>
+
+                    <button onclick="saveSleep()">
+                        Save Sleep
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             NUTRITION
+        ================================================== -->
+
+        <section id="nutrition" class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">NUTRITION</span>
+
+                <h1>Advanced Nutrition</h1>
+
+                <p>
+                    Track food, calories, macros, water and body measurements.
+                </p>
+
+            </div>
+
+
+            <div class="nutrition-stats">
+
+                <div class="nutrition-stat">
+                    <span>Calories</span>
+                    <strong id="nutritionCalories">0</strong>
+                    <small>kcal</small>
+                </div>
+
+                <div class="nutrition-stat">
+                    <span>Protein</span>
+                    <strong id="nutritionProtein">0</strong>
+                    <small>g</small>
+                </div>
+
+                <div class="nutrition-stat">
+                    <span>Carbs</span>
+                    <strong id="nutritionCarbs">0</strong>
+                    <small>g</small>
+                </div>
+
+                <div class="nutrition-stat">
+                    <span>Fat</span>
+                    <strong id="nutritionFat">0</strong>
+                    <small>g</small>
+                </div>
+
+            </div>
+
+
+            <!-- FOOD -->
+
+            <div class="glass-panel">
+
+                <div class="panel-title">
+
+                    <div>
+                        <span class="section-label">FOOD & CALORIES</span>
+                        <h2>Meal Calculator</h2>
+                    </div>
+
+                    <i class="fa-solid fa-bowl-food"></i>
+
+                </div>
+
+                <label>Date</label>
+                <input type="date" id="foodDate">
+
+
+                <h3>Food Items</h3>
+
+                <div id="foodRows"></div>
+
+                <button class="small-btn"
+                        onclick="addFoodRow()">
+                    + Add Food
+                </button>
+
+
+                <h3 class="mt">Gravy / Side Dish</h3>
+
+                <div id="gravyRows"></div>
+
+                <button class="small-btn"
+                        onclick="addGravyRow()">
+                    + Add Gravy
+                </button>
+
+
+                <div class="calorie-preview">
+
+                    Estimated Calories:
+                    <strong id="foodEstimatedCalories">
+                        0 kcal
+                    </strong>
+
+                </div>
+
+
+                <button class="primary-btn"
+                        onclick="saveFoodMeal()">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Food Record
+
+                </button>
+
+            </div>
+
+
+            <!-- MANUAL NUTRITION -->
+
+            <div class="glass-panel">
+
+                <div class="panel-title">
+
+                    <div>
+                        <span class="section-label">
+                            MACRONUTRIENTS
+                        </span>
+
+                        <h2>Manual Nutrition Entry</h2>
+                    </div>
+
+                </div>
+
+                <div class="form-grid">
+
+                    <div>
+                        <label>Meal</label>
+
+                        <select id="manualMeal">
+
+                            <option>Breakfast</option>
+                            <option>Lunch</option>
+                            <option>Snacks</option>
+                            <option>Dinner</option>
+
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Calories</label>
+                        <input type="number"
+                               id="manualCalories"
+                               min="0">
+                    </div>
+
+                    <div>
+                        <label>Protein (g)</label>
+                        <input type="number"
+                               id="manualProtein"
+                               min="0">
+                    </div>
+
+                    <div>
+                        <label>Carbs (g)</label>
+                        <input type="number"
+                               id="manualCarbs"
+                               min="0">
+                    </div>
+
+                    <div>
+                        <label>Fat (g)</label>
+                        <input type="number"
+                               id="manualFat"
+                               min="0">
+                    </div>
+
+                </div>
+
+                <button class="primary-btn"
+                        onclick="saveManualNutrition()">
+                    Save Nutrition
+                </button>
+
+            </div>
+
+
+            <!-- BODY TRACKER -->
+
+            <div class="two-column">
+
+                <div class="glass-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+                            <span class="section-label">
+                                BODY TRACKER
+                            </span>
+
+                            <h2>Weight & Height</h2>
+                        </div>
+
+                        <i class="fa-solid fa-weight-scale"></i>
+
+                    </div>
+
+                    <label>Date</label>
+                    <input type="date" id="bodyDate">
+
+                    <label>Weight (kg)</label>
+                    <input type="number"
+                           id="weightInput"
+                           step="0.1"
+                           min="0">
+
+                    <label>Height (cm)</label>
+                    <input type="number"
+                           id="heightInput"
+                           step="0.1"
+                           min="0">
+
+                    <button class="primary-btn"
+                            onclick="saveBodyData()">
+                        Save Measurement
+                    </button>
+
+                </div>
+
+
+                <div class="glass-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+                            <span class="section-label">
+                                BODY INDEX
+                            </span>
+
+                            <h2>BMI</h2>
+                        </div>
+
+                        <i class="fa-solid fa-calculator"></i>
+
+                    </div>
+
+                    <div class="bmi-value">
+
+                        <strong id="bmiValue">--</strong>
+
+                        <span id="bmiStatus">
+                            Enter height & weight
+                        </span>
+
+                    </div>
+
+                    <p class="hint">
+                        BMI is a general screening measure and does not
+                        by itself determine individual health.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="chart-card">
+
+                <h2>Weight Progress</h2>
+
+                <canvas id="weightChart"></canvas>
+
+            </div>
+
+
+            <div class="glass-panel">
+
+                <h2>Macro Distribution</h2>
+
+                <div class="macro-bar">
+
+                    <span>Protein</span>
+
+                    <div class="progress">
+                        <div id="proteinBar"></div>
+                    </div>
+
+                </div>
+
+                <div class="macro-bar">
+
+                    <span>Carbs</span>
+
+                    <div class="progress">
+                        <div id="carbsBar"></div>
+                    </div>
+
+                </div>
+
+                <div class="macro-bar">
+
+                    <span>Fat</span>
+
+                    <div class="progress">
+                        <div id="fatBar"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="glass-panel">
+
+                <h2>Saved Nutrition Records</h2>
+
+                <div id="nutritionRecords"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SMART PLANNER
+        ================================================== -->
+
+        <section id="planner" class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">SMART PLANNER</span>
+
+                <h1>Daily Planner</h1>
+
+                <p>
+                    Organize your tasks and complete your priorities.
+                </p>
+
+            </div>
+
+
+            <div class="glass-panel">
+
+                <div class="form-grid">
+
+                    <div>
+                        <label>Date</label>
+                        <input type="date" id="taskDate">
+                    </div>
+
+                    <div>
+                        <label>Task</label>
+                        <input type="text"
+                               id="taskName"
+                               placeholder="Complete Java assignment">
+                    </div>
+
+                    <div>
+                        <label>Start Time</label>
+                        <input type="time" id="taskStart">
+                    </div>
+
+                    <div>
+                        <label>End Time</label>
+                        <input type="time" id="taskEnd">
+                    </div>
+
+                    <div>
+                        <label>Priority</label>
+
+                        <select id="taskPriority">
+
+                            <option value="High">High</option>
+                            <option value="Medium" selected>
+                                Medium
+                            </option>
+                            <option value="Low">Low</option>
+
+                        </select>
+                    </div>
+
+                </div>
+
+                <button class="primary-btn"
+                        onclick="addTask()">
+                    + Add Task
+                </button>
+
+            </div>
+
+
+            <div class="planner-summary">
+
+                <div>
+                    <span>Total Tasks</span>
+                    <strong id="totalTasks">0</strong>
+                </div>
+
+                <div>
+                    <span>Completed</span>
+                    <strong id="completedTasks">0</strong>
+                </div>
+
+                <div>
+                    <span>Pending</span>
+                    <strong id="pendingTasks">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="glass-panel">
+
+                <h2>Today's Tasks</h2>
+
+                <div id="taskList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FOCUS TIMER
+        ================================================== -->
+
+        <section id="focus" class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">DEEP WORK</span>
+
+                <h1>Focus Timer</h1>
+
+                <p>
+                    Use focused sessions to improve concentration.
+                </p>
+
+            </div>
+
+
+            <div class="focus-card">
+
+                <div class="timer-display" id="timerDisplay">
+                    25:00
+                </div>
+
+                <div class="timer-mode">
+                    <span id="timerMode">
+                        Focus Session
+                    </span>
+                </div>
+
+                <div class="timer-presets">
+
+                    <button onclick="setTimer(25)">
+                        25 min
+                    </button>
+
+                    <button onclick="setTimer(50)">
+                        50 min
+                    </button>
+
+                    <button onclick="setTimer(60)">
+                        60 min
+                    </button>
+
+                </div>
+
+                <div class="timer-controls">
+
+                    <button onclick="startTimer()">
+                        <i class="fa-solid fa-play"></i>
+                        Start
+                    </button>
+
+                    <button onclick="pauseTimer()">
+                        <i class="fa-solid fa-pause"></i>
+                        Pause
+                    </button>
+
+                    <button onclick="resetTimer()">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="glass-panel">
+
+                <h2>Focus Session History</h2>
+
+                <div id="focusHistory"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DAILY GOALS
+        ================================================== -->
+
+        <section id="goals" class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">DAILY TARGETS</span>
+
+                <h1>Smart Daily Goals</h1>
+
+                <p>
+                    Track your progress against your daily reference targets.
+                </p>
+
+            </div>
+
+
+            <div class="goals-grid">
+
+                <div class="goal-card">
+                    <div class="goal-top">
+                        <i class="fa-solid fa-book"></i>
+                        <strong>Study</strong>
+                    </div>
+
+                    <div class="goal-value">
+                        <span id="goalStudy">0 / 120 min</span>
+                    </div>
+
+                    <div class="progress">
+                        <div id="goalStudyBar"></div>
+                    </div>
+                </div>
+
+
+                <div class="goal-card">
+                    <div class="goal-top">
+                        <i class="fa-solid fa-dumbbell"></i>
+                        <strong>Exercise</strong>
+                    </div>
+
+                    <div class="goal-value">
+                        <span id="goalExercise">0 / 30 min</span>
+                    </div>
+
+                    <div class="progress">
+                        <div id="goalExerciseBar"></div>
+                    </div>
+                </div>
+
+
+                <div class="goal-card">
+                    <div class="goal-top">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <strong>Learning</strong>
+                    </div>
+
+                    <div class="goal-value">
+                        <span id="goalLearning">0 / 60 min</span>
+                    </div>
+
+                    <div class="progress">
+                        <div id="goalLearningBar"></div>
+                    </div>
+                </div>
+
+
+                <div class="goal-card">
+                    <div class="goal-top">
+                        <i class="fa-solid fa-bed"></i>
+                        <strong>Sleep</strong>
+                    </div>
+
+                    <div class="goal-value">
+                        <span id="goalSleep">0 / 480 min</span>
+                    </div>
+
+                    <div class="progress">
+                        <div id="goalSleepBar"></div>
+                    </div>
+                </div>
+
+
+                <div class="goal-card">
+                    <div class="goal-top">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        <strong>Screen Time</strong>
+                    </div>
+
+                    <div class="goal-value">
+                        <span id="goalScreen">0 / 180 min</span>
+                    </div>
+
+                    <div class="progress">
+                        <div id="goalScreenBar"></div>
+                    </div>
+                </div>
+
+
+                <div class="goal-card">
+                    <div class="goal-top">
+                        <i class="fa-solid fa-fire"></i>
+                        <strong>Calories</strong>
+                    </div>
+
+                    <div class="goal-value">
+                        <span id="goalCalories">0 / 2000 kcal</span>
+                    </div>
+
+                    <div class="progress">
+                        <div id="goalCaloriesBar"></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="glass-panel">
+
+                <h2>Goal Tips</h2>
+
+                <ul class="tips">
+
+                    <li>Break large study sessions into focused blocks.</li>
+
+                    <li>Take regular movement breaks.</li>
+
+                    <li>Record what you learn each day.</li>
+
+                    <li>Keep entertainment and social media balanced.</li>
+
+                    <li>Maintain a consistent sleep routine.</li>
+
+                    <li>Use nutrition values as approximate tracking.</li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             HISTORY
+        ================================================== -->
+
+        <section id="history" class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">RECORDS</span>
+
+                <h1>Activity History</h1>
+
+                <p>
+                    Review, edit and delete your previous records.
+                </p>
+
+            </div>
+
+
+            <div class="history-filter">
+
+                <label>Select Date</label>
+
+                <input type="date"
+                       id="historyDate"
+                       onchange="renderHistory()">
+
+                <button onclick="clearHistoryFilter()">
+                    Show All
+                </button>
+
+            </div>
+
+
+            <div class="daily-summary">
+
+                <div>
+                    <span>Study</span>
+                    <strong id="historyStudy">0 min</strong>
+                </div>
+
+                <div>
+                    <span>Exercise</span>
+                    <strong id="historyExercise">0 min</strong>
+                </div>
+
+                <div>
+                    <span>Learning</span>
+                    <strong id="historyLearning">0 min</strong>
+                </div>
+
+                <div>
+                    <span>Sleep</span>
+                    <strong id="historySleep">0 min</strong>
+                </div>
+
+                <div>
+                    <span>Calories</span>
+                    <strong id="historyCalories">0 kcal</strong>
+                </div>
+
+            </div>
+
+
+            <div class="glass-panel">
+
+                <div id="historyList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ANALYTICS
+        ================================================== -->
+
+        <section id="analytics" class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">DATA ANALYSIS</span>
+
+                <h1>Analytics</h1>
+
+                <p>
+                    Understand your activity patterns over time.
+                </p>
+
+            </div>
+
+
+            <div class="chart-card">
+
+                <h2>Daily Activity Trend</h2>
+
+                <canvas id="dailyActivityChart"></canvas>
+
+            </div>
+
+
+            <div class="chart-card">
+
+                <h2>Monthly Activity Comparison</h2>
+
+                <canvas id="monthlyComparisonChart"></canvas>
+
+            </div>
+
+
+            <div class="chart-card">
+
+                <h2>Daily Calories</h2>
+
+                <canvas id="calorieChart"></canvas>
+
+            </div>
+
+
+            <div class="chart-card">
+
+                <h2>Activity Distribution</h2>
+
+                <canvas id="activityDistributionChart"></canvas>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             WELLNESS
+        ================================================== -->
+
+        <section id="wellness" class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">HEALTH ANALYSIS</span>
+
+                <h1>Smart Wellness Analysis 🧠</h1>
+
+                <p>
+                    Your personalized daily-life analysis.
+                </p>
+
+            </div>
+
+
+            <div class="wellness-hero">
+
+                <div class="score-circle">
+
+                    <div>
+                        <strong id="wellnessScore">0</strong>
+                        <small>/100</small>
+                    </div>
+
+                </div>
+
+                <div class="wellness-info">
+
+                    <h2 id="wellnessStatus">
+                        Start recording your activities
+                    </h2>
+
+                    <p id="wellnessMessage">
+                        Add activities to receive personalized analysis.
+                    </p>
+
+                    <div class="productivity">
+
+                        <span>Productivity</span>
+
+                        <div class="progress">
+                            <div id="productivityBar"></div>
+                        </div>
+
+                        <strong id="productivityPercent2">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="suggestions-grid">
+
+                <div class="glass-panel">
+
+                    <h2>Health Suggestions</h2>
+
+                    <div id="healthSuggestions"></div>
+
+                </div>
+
+
+                <div class="glass-panel">
+
+                    <h2>Today's Balance</h2>
+
+                    <div id="wellnessBreakdown"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             JOURNAL
+        ================================================== -->
+
+        <section id="journal" class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">REFLECTION</span>
+
+                <h1>Daily Journal</h1>
+
+                <p>
+                    Reflect on your day and prepare for tomorrow.
+                </p>
+
+            </div>
+
+
+            <div class="glass-panel">
+
+                <label>Date</label>
+
+                <input type="date"
+                       id="journalDate">
+
+
+                <label>What did you accomplish today?</label>
+
+                <textarea id="journalAccomplishments"
+                          placeholder="Write your accomplishments..."></textarea>
+
+
+                <label>What can you improve?</label>
+
+                <textarea id="journalImprove"
+                          placeholder="Write what you want to improve..."></textarea>
+
+
+                <label>What will you do tomorrow?</label>
+
+                <textarea id="journalTomorrow"
+                          placeholder="Plan tomorrow..."></textarea>
+
+
+                <button class="primary-btn"
+                        onclick="saveJournal()">
+                    Save Journal
+                </button>
+
+            </div>
+
+
+            <div class="glass-panel">
+
+                <h2>End-of-Day Report</h2>
+
+                <div id="endOfDayReport">
+
+                    <p>
+                        Record your activities and journal entry to generate
+                        your report.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="glass-panel">
+
+                <h2>Previous Journal Entries</h2>
+
+                <div id="journalHistory"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     EDIT MODAL
+====================================================== -->
+
+<div id="editModal" class="modal">
+
+    <div class="modal-box">
+
+        <button class="modal-close"
+                onclick="closeEditModal()">
+            ×
+        </button>
+
+        <h2>Edit Activity</h2>
+
+        <input type="hidden" id="editId">
+
+        <label>Details</label>
+
+        <input type="text" id="editDetails">
+
+        <label>Start Time</label>
+
+        <input type="time" id="editStart">
+
+        <label>End Time</label>
+
+        <input type="time" id="editEnd">
+
+        <button class="primary-btn"
+                onclick="saveEditedActivity()">
+            Save Changes
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
