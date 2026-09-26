@@ -1,0 +1,2572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>LifeTrack - Digital Wellness</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+
+<!-- =========================================================
+     LOGIN SCREEN
+========================================================= -->
+
+<section id="loginScreen"
+         class="login-screen">
+
+    <div class="login-glow"></div>
+
+    <div class="login-card">
+
+        <div class="login-logo">
+
+            <div class="login-logo-icon">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+
+            <div>
+                <h1>LifeTrack</h1>
+                <span>Digital Wellness</span>
+            </div>
+
+        </div>
+
+
+        <div class="login-content">
+
+            <span class="login-label">
+                PERSONAL WELLNESS CENTER
+            </span>
+
+            <h2>
+                Welcome to LifeTrack
+            </h2>
+
+            <p>
+                Track your activities, nutrition,
+                productivity, sleep and wellness
+                in one place.
+            </p>
+
+
+            <button class="google-login-btn"
+                    onclick="loginWithGoogle()">
+
+                <span class="google-letter">
+                    G
+                </span>
+
+                <span>
+                    Continue with Google
+                </span>
+
+            </button>
+
+
+            <div class="login-security">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Secure Google authentication
+
+            </div>
+
+
+            <p class="login-small-text">
+
+                Use your Gmail account to create
+                or access your LifeTrack account.
+
+            </p>
+
+        </div>
+
+
+        <div class="login-footer">
+            Track • Improve • Grow
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MAIN APPLICATION
+========================================================= -->
+
+<div id="lifeTrackApp"
+     class="app-container">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ===================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+
+            <div>
+
+                <h2>LifeTrack</h2>
+
+                <span>
+                    Digital Wellness
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <button class="nav-btn active"
+                    onclick="showPage('dashboardPage',this)">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </button>
+
+
+            <button class="nav-btn"
+                    onclick="showPage('activitiesPage',this)">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>Activities</span>
+            </button>
+
+
+            <button class="nav-btn"
+                    onclick="showPage('nutritionPage',this)">
+                <i class="fa-solid fa-apple-whole"></i>
+                <span>Nutrition</span>
+            </button>
+
+
+            <button class="nav-btn"
+                    onclick="showPage('plannerPage',this)">
+                <i class="fa-solid fa-list-check"></i>
+                <span>Smart Planner</span>
+            </button>
+
+
+            <button class="nav-btn"
+                    onclick="showPage('focusPage',this)">
+                <i class="fa-solid fa-stopwatch"></i>
+                <span>Focus Timer</span>
+            </button>
+
+
+            <button class="nav-btn"
+                    onclick="showPage('goalsPage',this)">
+                <i class="fa-solid fa-bullseye"></i>
+                <span>Daily Goals</span>
+            </button>
+
+
+            <button class="nav-btn"
+                    onclick="showPage('historyPage',this)">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>History</span>
+            </button>
+
+
+            <button class="nav-btn"
+                    onclick="showPage('analyticsPage',this)">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Analytics</span>
+            </button>
+
+
+            <button class="nav-btn"
+                    onclick="showPage('journalPage',this)">
+                <i class="fa-solid fa-book"></i>
+                <span>Daily Journal</span>
+            </button>
+
+
+            <button class="nav-btn"
+                    onclick="showPage('wellnessPage',this)">
+                <i class="fa-solid fa-brain"></i>
+                <span>Wellness</span>
+            </button>
+
+        </nav>
+
+
+        <!-- USER -->
+
+        <div class="logged-user">
+
+            <img
+                id="loggedUserPhoto"
+                src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2796%27 height=%2796%27 viewBox=%270 0 96 96%27%3E%3Crect width=%2796%27 height=%2796%27 rx=%2748%27 fill=%27%230f2740%27/%3E%3Ccircle cx=%2748%27 cy=%2734%27 r=%2717%27 fill=%27%239fb0c5%27/%3E%3Cpath d=%27M18 84c4-18 16-27 30-27s26 9 30 27%27 fill=%27%239fb0c5%27/%3E%3C/svg%3E"
+                alt="User"
+                referrerpolicy="no-referrer"
+            >
+
+
+            <div class="logged-user-info">
+
+                <strong id="loggedUserName">
+                    LifeTrack User
+                </strong>
+
+                <span id="loggedUserEmail">
+                    user@gmail.com
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button class="logout-btn"
+                onclick="logoutUser()">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>
+                Logout
+            </span>
+
+        </button>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-status">
+
+                <span class="status-dot"></span>
+
+                LifeTrack Online
+
+            </div>
+
+            <p>
+                Track • Improve • Grow
+            </p>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             DASHBOARD
+        ================================================= -->
+
+        <section id="dashboardPage"
+                 class="page active-page">
+
+            <div class="dashboard-hero">
+
+                <div>
+
+                    <span class="hero-small">
+                        <i class="fa-solid fa-sparkles"></i>
+                        PERSONAL WELLNESS CENTER
+                    </span>
+
+                    <h1 id="greetingText">
+                        Good Morning!
+                    </h1>
+
+                    <p id="heroDate">
+                        Loading...
+                    </p>
+
+                    <p class="hero-description">
+                        Your complete daily life,
+                        productivity and wellness overview.
+                    </p>
+
+                </div>
+
+
+                <div class="hero-clock">
+
+                    <div class="clock-icon">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+
+                    <div>
+
+                        <strong id="liveClock">
+                            00:00:00
+                        </strong>
+
+                        <span>
+                            Local Time
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        TODAY
+                    </span>
+
+                    <h2>
+                        Quick Overview
+                    </h2>
+
+                </div>
+
+
+                <button class="outline-btn"
+                        onclick="refreshAll()">
+
+                    <i class="fa-solid fa-rotate"></i>
+                    Refresh
+
+                </button>
+
+            </div>
+
+
+            <div class="dashboard-cards">
+
+                <div class="dashboard-card">
+
+                    <div class="card-top">
+
+                        <div class="card-icon study-icon">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+
+                        <span>STUDY</span>
+
+                    </div>
+
+                    <h3 id="dashStudy">
+                        0 min
+                    </h3>
+
+                    <p>
+                        Today's study time
+                    </p>
+
+                    <div class="mini-progress">
+                        <div id="studyMiniBar"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-top">
+
+                        <div class="card-icon exercise-icon">
+                            <i class="fa-solid fa-dumbbell"></i>
+                        </div>
+
+                        <span>EXERCISE</span>
+
+                    </div>
+
+                    <h3 id="dashExercise">
+                        0 min
+                    </h3>
+
+                    <p>
+                        Today's exercise
+                    </p>
+
+                    <div class="mini-progress">
+                        <div id="exerciseMiniBar"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-top">
+
+                        <div class="card-icon learning-icon">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+
+                        <span>LEARNING</span>
+
+                    </div>
+
+                    <h3 id="dashLearning">
+                        0 min
+                    </h3>
+
+                    <p>
+                        New things learned
+                    </p>
+
+                    <div class="mini-progress">
+                        <div id="learningMiniBar"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-top">
+
+                        <div class="card-icon food-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+
+                        <span>CALORIES</span>
+
+                    </div>
+
+                    <h3 id="dashCalories">
+                        0 kcal
+                    </h3>
+
+                    <p>
+                        Today's intake
+                    </p>
+
+                    <div class="mini-progress">
+                        <div id="calorieMiniBar"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-top">
+
+                        <div class="card-icon sleep-icon">
+                            <i class="fa-solid fa-bed"></i>
+                        </div>
+
+                        <span>SLEEP</span>
+
+                    </div>
+
+                    <h3 id="dashSleep">
+                        0 min
+                    </h3>
+
+                    <p>
+                        Recorded sleep
+                    </p>
+
+                    <div class="mini-progress">
+                        <div id="sleepMiniBar"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-top">
+
+                        <div class="card-icon screen-icon">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                        </div>
+
+                        <span>SCREEN</span>
+
+                    </div>
+
+                    <h3 id="dashScreen">
+                        0 min
+                    </h3>
+
+                    <p>
+                        Gaming + social
+                    </p>
+
+                    <div class="mini-progress">
+                        <div id="screenMiniBar"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NUTRITION -->
+
+            <div class="nutrition-snapshot">
+
+                <div class="snapshot-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            NUTRITION
+                        </span>
+
+                        <h2>
+                            Today's Nutrition
+                        </h2>
+
+                    </div>
+
+
+                    <button class="outline-btn"
+                            onclick="showPageById('nutritionPage')">
+
+                        View Nutrition
+
+                    </button>
+
+                </div>
+
+
+                <div class="nutrition-mini-grid">
+
+                    <div>
+                        <span>Calories</span>
+                        <strong id="dashNutritionCalories">0</strong>
+                        <small>kcal</small>
+                    </div>
+
+                    <div>
+                        <span>Protein</span>
+                        <strong id="dashProtein">0</strong>
+                        <small>g</small>
+                    </div>
+
+                    <div>
+                        <span>Carbs</span>
+                        <strong id="dashCarbs">0</strong>
+                        <small>g</small>
+                    </div>
+
+                    <div>
+                        <span>Fat</span>
+                        <strong id="dashFat">0</strong>
+                        <small>g</small>
+                    </div>
+
+                    <div>
+                        <span>Water</span>
+                        <strong id="dashWater">0</strong>
+                        <small>/ 8</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI -->
+
+            <div class="dashboard-grid-3">
+
+                <div class="glass-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+
+                            <span class="section-label">
+                                PRODUCTIVITY
+                            </span>
+
+                            <h2>
+                                Daily Productivity
+                            </h2>
+
+                        </div>
+
+                        <i class="fa-solid fa-brain"></i>
+
+                    </div>
+
+
+                    <div class="productivity-box">
+
+                        <div class="progress-ring"
+                             id="productivityRing">
+
+                            <div>
+
+                                <strong id="productivityPercent">
+                                    0%
+                                </strong>
+
+                                <span>
+                                    Productive
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <h3 id="productivityStatus">
+                                Start your day
+                            </h3>
+
+                            <p id="productivityMessage">
+                                Add activities to calculate
+                                your productivity.
+                            </p>
+
+                            <strong id="completedGoals">
+                                0 / 6 goals
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="glass-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+
+                            <span class="section-label">
+                                CONSISTENCY
+                            </span>
+
+                            <h2>
+                                Habit Streak
+                            </h2>
+
+                        </div>
+
+                        <i class="fa-solid fa-fire"></i>
+
+                    </div>
+
+
+                    <div class="streak-number">
+
+                        <strong id="streakCount">
+                            0
+                        </strong>
+
+                        <span>
+                            days
+                        </span>
+
+                    </div>
+
+
+                    <p>
+                        Keep tracking your routine
+                        consistently.
+                    </p>
+
+                    <div class="streak-days"
+                         id="streakDays"></div>
+
+                </div>
+
+
+                <div class="glass-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+
+                            <span class="section-label">
+                                MOTIVATION
+                            </span>
+
+                            <h2>
+                                Daily Quote
+                            </h2>
+
+                        </div>
+
+                        <i class="fa-solid fa-quote-right"></i>
+
+                    </div>
+
+
+                    <p class="quote-text"
+                       id="dailyQuote">
+                        Small progress is still progress.
+                    </p>
+
+                    <span id="quoteAuthor">
+                        — LifeTrack
+                    </span>
+
+
+                    <button class="quote-btn"
+                            onclick="changeQuote()">
+
+                        <i class="fa-solid fa-shuffle"></i>
+                        New Quote
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- WATER / MOOD / WEATHER -->
+
+            <div class="dashboard-grid-3">
+
+                <div class="glass-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+
+                            <span class="section-label">
+                                HYDRATION
+                            </span>
+
+                            <h2>
+                                Water Tracker
+                            </h2>
+
+                        </div>
+
+                        <i class="fa-solid fa-droplet"></i>
+
+                    </div>
+
+
+                    <div class="water-box">
+
+                        <div class="water-glass">
+
+                            <div id="waterFill"></div>
+
+                            <div class="water-glass-text">
+
+                                <strong id="waterCount">
+                                    0
+                                </strong>
+
+                                <span>
+                                    / 8 glasses
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <p id="waterMessage">
+                                Stay hydrated throughout
+                                the day.
+                            </p>
+
+
+                            <div class="button-row">
+
+                                <button class="small-btn"
+                                        onclick="removeWater()">
+                                    −
+                                </button>
+
+                                <button class="primary-small-btn"
+                                        onclick="addWater()">
+                                    + Add Glass
+                                </button>
+
+                            </div>
+
+
+                            <button class="text-btn"
+                                    onclick="resetWater()">
+                                Reset
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="glass-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+
+                            <span class="section-label">
+                                MENTAL WELLNESS
+                            </span>
+
+                            <h2>
+                                How are you feeling?
+                            </h2>
+
+                        </div>
+
+                        <i class="fa-solid fa-face-smile"></i>
+
+                    </div>
+
+
+                    <div class="mood-options">
+
+                        <button onclick="setMood('😄','Excellent')">
+                            😄
+                            <span>Excellent</span>
+                        </button>
+
+                        <button onclick="setMood('🙂','Good')">
+                            🙂
+                            <span>Good</span>
+                        </button>
+
+                        <button onclick="setMood('😐','Okay')">
+                            😐
+                            <span>Okay</span>
+                        </button>
+
+                        <button onclick="setMood('😔','Low')">
+                            😔
+                            <span>Low</span>
+                        </button>
+
+                        <button onclick="setMood('😴','Tired')">
+                            😴
+                            <span>Tired</span>
+                        </button>
+
+                    </div>
+
+
+                    <div class="selected-mood">
+
+                        Today's mood:
+
+                        <strong id="selectedMood">
+                            Not selected
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="glass-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+
+                            <span class="section-label">
+                                ENVIRONMENT
+                            </span>
+
+                            <h2>
+                                Weather
+                            </h2>
+
+                        </div>
+
+                        <i class="fa-solid fa-cloud-sun"></i>
+
+                    </div>
+
+
+                    <div class="weather-box">
+
+                        <i class="fa-solid fa-sun"></i>
+
+                        <div>
+
+                            <h2>
+                                --°C
+                            </h2>
+
+                            <p>
+                                Weather placeholder
+                            </p>
+
+                            <span>
+                                Add weather API later
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="smart-insight-card">
+
+                <div class="smart-icon">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+
+                <div>
+
+                    <span>
+                        SMART DAILY INSIGHT
+                    </span>
+
+                    <h2 id="smartInsightTitle">
+                        Your personal dashboard is ready.
+                    </h2>
+
+                    <p id="smartInsightText">
+                        Add a few activities to receive
+                        a personalized insight.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ACTIVITIES
+        ================================================= -->
+
+        <section id="activitiesPage"
+                 class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">
+                    DAILY TRACKING
+                </span>
+
+                <h1>
+                    Activities
+                </h1>
+
+                <p>
+                    Record exact timings for your day.
+                </p>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <div class="form-card">
+
+                    <h2>
+                        <i class="fa-solid fa-book"></i>
+                        Study
+                    </h2>
+
+                    <label>Date</label>
+
+                    <input type="date"
+                           id="studyDate">
+
+                    <label>Start Time</label>
+
+                    <input type="time"
+                           id="studyStart">
+
+                    <label>End Time</label>
+
+                    <input type="time"
+                           id="studyEnd">
+
+                    <label>What did you study?</label>
+
+                    <input type="text"
+                           id="studyTopic"
+                           placeholder="Example: Java">
+
+                    <button class="primary-btn"
+                            onclick="saveStudy()">
+                        Save Study
+                    </button>
+
+                </div>
+
+
+                <div class="form-card">
+
+                    <h2>
+                        <i class="fa-solid fa-dumbbell"></i>
+                        Exercise
+                    </h2>
+
+                    <label>Date</label>
+
+                    <input type="date"
+                           id="exerciseDate">
+
+                    <label>Exercise Type</label>
+
+                    <input type="text"
+                           id="exerciseType"
+                           placeholder="Running / Gym / Walking">
+
+                    <label>Start Time</label>
+
+                    <input type="time"
+                           id="exerciseStart">
+
+                    <label>End Time</label>
+
+                    <input type="time"
+                           id="exerciseEnd">
+
+                    <button class="primary-btn"
+                            onclick="saveExercise()">
+                        Save Exercise
+                    </button>
+
+                </div>
+
+
+                <div class="form-card">
+
+                    <h2>
+                        <i class="fa-solid fa-lightbulb"></i>
+                        Learning
+                    </h2>
+
+                    <label>Date</label>
+
+                    <input type="date"
+                           id="learningDate">
+
+                    <label>What did you learn?</label>
+
+                    <input type="text"
+                           id="learningTopic"
+                           placeholder="Example: HTML">
+
+                    <label>Start Time</label>
+
+                    <input type="time"
+                           id="learningStart">
+
+                    <label>End Time</label>
+
+                    <input type="time"
+                           id="learningEnd">
+
+                    <button class="primary-btn"
+                            onclick="saveLearning()">
+                        Save Learning
+                    </button>
+
+                </div>
+
+
+                <div class="form-card">
+
+                    <h2>
+                        <i class="fa-solid fa-gamepad"></i>
+                        Entertainment / Gaming
+                    </h2>
+
+                    <label>Date</label>
+
+                    <input type="date"
+                           id="entertainmentDate">
+
+                    <label>Activity</label>
+
+                    <input type="text"
+                           id="entertainmentType"
+                           placeholder="Gaming / Movie">
+
+                    <label>Start Time</label>
+
+                    <input type="time"
+                           id="entertainmentStart">
+
+                    <label>End Time</label>
+
+                    <input type="time"
+                           id="entertainmentEnd">
+
+                    <button class="primary-btn"
+                            onclick="saveEntertainment()">
+                        Save Entertainment
+                    </button>
+
+                </div>
+
+
+                <div class="form-card">
+
+                    <h2>
+                        <i class="fa-brands fa-instagram"></i>
+                        Social Media
+                    </h2>
+
+                    <label>Date</label>
+
+                    <input type="date"
+                           id="socialDate">
+
+                    <label>Platform</label>
+
+                    <select id="socialPlatform">
+
+                        <option>Instagram</option>
+                        <option>WhatsApp</option>
+                        <option>YouTube</option>
+                        <option>Facebook</option>
+                        <option>Telegram</option>
+                        <option>Other</option>
+
+                    </select>
+
+                    <label>Start Time</label>
+
+                    <input type="time"
+                           id="socialStart">
+
+                    <label>End Time</label>
+
+                    <input type="time"
+                           id="socialEnd">
+
+                    <button class="primary-btn"
+                            onclick="saveSocial()">
+                        Save Social Media
+                    </button>
+
+                </div>
+
+
+                <div class="form-card">
+
+                    <h2>
+                        <i class="fa-solid fa-bed"></i>
+                        Sleep
+                    </h2>
+
+                    <label>Date</label>
+
+                    <input type="date"
+                           id="sleepDate">
+
+                    <label>Sleep Time</label>
+
+                    <input type="time"
+                           id="sleepStart">
+
+                    <label>Wake Time</label>
+
+                    <input type="time"
+                           id="sleepEnd">
+
+                    <button class="primary-btn"
+                            onclick="saveSleep()">
+                        Save Sleep
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             NUTRITION
+        ================================================= -->
+
+        <section id="nutritionPage"
+                 class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">
+                    NUTRITION
+                </span>
+
+                <h1>
+                    Advanced Nutrition
+                </h1>
+
+                <p>
+                    Track Indian foods and automatically
+                    calculate calories and macros.
+                </p>
+
+            </div>
+
+
+            <div class="nutrition-total-grid">
+
+                <div>
+                    <span>Calories</span>
+                    <strong id="nutritionTotalCalories">0</strong>
+                    <small>kcal</small>
+                </div>
+
+                <div>
+                    <span>Protein</span>
+                    <strong id="nutritionTotalProtein">0</strong>
+                    <small>g</small>
+                </div>
+
+                <div>
+                    <span>Carbs</span>
+                    <strong id="nutritionTotalCarbs">0</strong>
+                    <small>g</small>
+                </div>
+
+                <div>
+                    <span>Fat</span>
+                    <strong id="nutritionTotalFat">0</strong>
+                    <small>g</small>
+                </div>
+
+            </div>
+
+
+            <div class="nutrition-card">
+
+                <div class="nutrition-card-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            FOOD LOGGER
+                        </span>
+
+                        <h2>
+                            Add Meal
+                        </h2>
+
+                    </div>
+
+                    <button class="outline-btn"
+                            onclick="addFoodRow()">
+                        + Add Dish
+                    </button>
+
+                </div>
+
+
+                <div class="nutrition-controls">
+
+                    <div>
+
+                        <label>Date</label>
+
+                        <input type="date"
+                               id="nutritionDate">
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Meal</label>
+
+                        <select id="nutritionMeal">
+
+                            <option>Breakfast</option>
+                            <option>Lunch</option>
+                            <option>Snacks</option>
+                            <option>Dinner</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <datalist id="foodDatalist"></datalist>
+
+
+                <div id="foodRows"></div>
+
+
+                <div class="meal-calculation">
+
+                    <span>
+                        Meal Calories:
+                    </span>
+
+                    <strong id="mealCalories">
+                        0 kcal
+                    </strong>
+
+                    <span>
+                        P: <b id="mealProtein">0</b> g
+                    </span>
+
+                    <span>
+                        C: <b id="mealCarbs">0</b> g
+                    </span>
+
+                    <span>
+                        F: <b id="mealFat">0</b> g
+                    </span>
+
+                </div>
+
+
+                <button class="primary-btn"
+                        onclick="saveNutritionMeal()">
+                    Save Meal
+                </button>
+
+            </div>
+
+
+            <div class="nutrition-two-column">
+
+
+                <div class="nutrition-card">
+
+                    <h2>
+                        Custom Food
+                    </h2>
+
+                    <p class="helper">
+                        Add your own local or homemade food.
+                    </p>
+
+
+                    <label>Food Name</label>
+
+                    <input type="text"
+                           id="customFoodName"
+                           placeholder="Example: Homemade Chicken Curry">
+
+
+                    <label>Category</label>
+
+                    <input type="text"
+                           id="customFoodCategory"
+                           placeholder="Indian Main">
+
+
+                    <div class="four-input-grid">
+
+                        <div>
+                            <label>Calories / 100g</label>
+                            <input type="number"
+                                   id="customKcal">
+                        </div>
+
+                        <div>
+                            <label>Protein</label>
+                            <input type="number"
+                                   id="customProtein">
+                        </div>
+
+                        <div>
+                            <label>Carbs</label>
+                            <input type="number"
+                                   id="customCarbs">
+                        </div>
+
+                        <div>
+                            <label>Fat</label>
+                            <input type="number"
+                                   id="customFat">
+                        </div>
+
+                    </div>
+
+
+                    <button class="primary-btn"
+                            onclick="saveCustomFood()">
+                        Add Custom Food
+                    </button>
+
+                </div>
+
+
+                <div class="nutrition-card">
+
+                    <h2>
+                        Body Tracker
+                    </h2>
+
+
+                    <label>Date</label>
+
+                    <input type="date"
+                           id="bodyDate">
+
+
+                    <label>Weight (kg)</label>
+
+                    <input type="number"
+                           id="bodyWeight"
+                           step="0.1">
+
+
+                    <label>Height (cm)</label>
+
+                    <input type="number"
+                           id="bodyHeight"
+                           step="0.1">
+
+
+                    <button class="primary-btn"
+                            onclick="saveBodyRecord()">
+                        Save Body Data
+                    </button>
+
+
+                    <div class="bmi-box">
+
+                        <span>
+                            BMI
+                        </span>
+
+                        <strong id="bmiValue">
+                            --
+                        </strong>
+
+                        <small id="bmiStatus">
+                            Enter height and weight
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="nutrition-card">
+
+                <h2>
+                    Saved Nutrition Records
+                </h2>
+
+                <div id="nutritionRecordsList"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SMART PLANNER
+        ================================================= -->
+
+        <section id="plannerPage"
+                 class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">
+                    PRODUCTIVITY
+                </span>
+
+                <h1>
+                    Smart Planner
+                </h1>
+
+                <p>
+                    Plan tasks with exact timings and priorities.
+                </p>
+
+            </div>
+
+
+            <div class="planner-form">
+
+                <input type="date"
+                       id="taskDate">
+
+                <input type="text"
+                       id="taskName"
+                       placeholder="Task name">
+
+                <input type="time"
+                       id="taskStart">
+
+                <input type="time"
+                       id="taskEnd">
+
+                <select id="taskPriority">
+
+                    <option>High</option>
+                    <option selected>Medium</option>
+                    <option>Low</option>
+
+                </select>
+
+                <button class="primary-btn"
+                        onclick="addTask()">
+                    Add Task
+                </button>
+
+            </div>
+
+
+            <div class="planner-summary">
+
+                <div>
+                    <strong id="taskTotal">0</strong>
+                    <span>Total</span>
+                </div>
+
+                <div>
+                    <strong id="taskCompleted">0</strong>
+                    <span>Completed</span>
+                </div>
+
+                <div>
+                    <strong id="taskPending">0</strong>
+                    <span>Pending</span>
+                </div>
+
+            </div>
+
+
+            <div id="taskList"></div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FOCUS TIMER
+        ================================================= -->
+
+        <section id="focusPage"
+                 class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">
+                    DEEP WORK
+                </span>
+
+                <h1>
+                    Focus Timer
+                </h1>
+
+                <p>
+                    Use Pomodoro-style focused sessions.
+                </p>
+
+            </div>
+
+
+            <div class="focus-card">
+
+                <div class="focus-presets">
+
+                    <button onclick="setFocusDuration(25)">
+                        25 min
+                    </button>
+
+                    <button onclick="setFocusDuration(50)">
+                        50 min
+                    </button>
+
+                    <button onclick="setFocusDuration(60)">
+                        60 min
+                    </button>
+
+                </div>
+
+
+                <div class="focus-time"
+                     id="focusTime">
+                    25:00
+                </div>
+
+
+                <div class="focus-buttons">
+
+                    <button class="primary-btn"
+                            id="focusStartBtn"
+                            onclick="toggleFocusTimer()">
+                        Start
+                    </button>
+
+                    <button class="outline-btn"
+                            onclick="resetFocusTimer()">
+                        Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="nutrition-card">
+
+                <h2>
+                    Focus Session History
+                </h2>
+
+                <div id="focusHistory"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             GOALS
+        ================================================= -->
+
+        <section id="goalsPage"
+                 class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">
+                    DAILY TARGETS
+                </span>
+
+                <h1>
+                    Daily Goals
+                </h1>
+
+                <p>
+                    Track progress toward your daily targets.
+                </p>
+
+            </div>
+
+
+            <div class="goals-grid">
+
+                <div class="goal-card">
+                    <span>Study</span>
+                    <strong id="goalStudyProgress">0 / 120 min</strong>
+                    <div class="goal-bar">
+                        <div id="goalStudyBar"></div>
+                    </div>
+                </div>
+
+
+                <div class="goal-card">
+                    <span>Exercise</span>
+                    <strong id="goalExerciseProgress">0 / 30 min</strong>
+                    <div class="goal-bar">
+                        <div id="goalExerciseBar"></div>
+                    </div>
+                </div>
+
+
+                <div class="goal-card">
+                    <span>Learning</span>
+                    <strong id="goalLearningProgress">0 / 60 min</strong>
+                    <div class="goal-bar">
+                        <div id="goalLearningBar"></div>
+                    </div>
+                </div>
+
+
+                <div class="goal-card">
+                    <span>Sleep</span>
+                    <strong id="goalSleepProgress">0 / 480 min</strong>
+                    <div class="goal-bar">
+                        <div id="goalSleepBar"></div>
+                    </div>
+                </div>
+
+
+                <div class="goal-card">
+                    <span>Screen Time</span>
+                    <strong id="goalScreenProgress">0 / 180 min</strong>
+                    <div class="goal-bar">
+                        <div id="goalScreenBar"></div>
+                    </div>
+                </div>
+
+
+                <div class="goal-card">
+                    <span>Calories</span>
+                    <strong id="goalCaloriesProgress">0 / 2000 kcal</strong>
+                    <div class="goal-bar">
+                        <div id="goalCaloriesBar"></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="goal-tips-card">
+
+                <h2>
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Smart Goal Tips
+                </h2>
+
+                <div id="goalTips"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             HISTORY
+        ================================================= -->
+
+        <section id="historyPage"
+                 class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">
+                    RECORDS
+                </span>
+
+                <h1>
+                    History
+                </h1>
+
+                <p>
+                    Review your previous activities.
+                </p>
+
+            </div>
+
+
+            <div class="history-filters">
+
+                <div>
+
+                    <label>Date</label>
+
+                    <input type="date"
+                           id="historyDate"
+                           onchange="renderHistory()">
+
+                </div>
+
+                <div>
+
+                    <label>Month</label>
+
+                    <input type="month"
+                           id="historyMonth"
+                           onchange="renderHistory()">
+
+                </div>
+
+            </div>
+
+
+            <div class="history-summary">
+
+                <div>
+                    <span>Study</span>
+                    <strong id="historyStudy">0 min</strong>
+                </div>
+
+                <div>
+                    <span>Exercise</span>
+                    <strong id="historyExercise">0 min</strong>
+                </div>
+
+                <div>
+                    <span>Learning</span>
+                    <strong id="historyLearning">0 min</strong>
+                </div>
+
+                <div>
+                    <span>Sleep</span>
+                    <strong id="historySleep">0 min</strong>
+                </div>
+
+            </div>
+
+
+            <div id="historyList"></div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ANALYTICS
+        ================================================= -->
+
+        <section id="analyticsPage"
+                 class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">
+                    ANALYTICS
+                </span>
+
+                <h1>
+                    Analytics
+                </h1>
+
+                <p>
+                    Understand your daily patterns.
+                </p>
+
+            </div>
+
+
+            <div class="chart-grid">
+
+                <div class="chart-card">
+
+                    <h2>
+                        Activity Distribution
+                    </h2>
+
+                    <canvas id="activityChart"></canvas>
+
+                </div>
+
+
+                <div class="chart-card">
+
+                    <h2>
+                        Nutrition
+                    </h2>
+
+                    <canvas id="nutritionChart"></canvas>
+
+                </div>
+
+
+                <div class="chart-card wide">
+
+                    <h2>
+                        Weight Progress
+                    </h2>
+
+                    <canvas id="weightChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             JOURNAL
+        ================================================= -->
+
+        <section id="journalPage"
+                 class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">
+                    REFLECTION
+                </span>
+
+                <h1>
+                    Daily Journal
+                </h1>
+
+                <p>
+                    Reflect on your day.
+                </p>
+
+            </div>
+
+
+            <div class="journal-card">
+
+                <label>Date</label>
+
+                <input type="date"
+                       id="journalDate">
+
+
+                <label>What did you accomplish?</label>
+
+                <textarea id="journalAccomplishments"
+                          rows="5"
+                          placeholder="Write your achievements..."></textarea>
+
+
+                <label>What can you improve?</label>
+
+                <textarea id="journalImprove"
+                          rows="5"
+                          placeholder="Write what you want to improve..."></textarea>
+
+
+                <label>What will you do tomorrow?</label>
+
+                <textarea id="journalTomorrow"
+                          rows="5"
+                          placeholder="Plan tomorrow..."></textarea>
+
+
+                <button class="primary-btn"
+                        onclick="saveJournal()">
+                    Save Journal
+                </button>
+
+            </div>
+
+
+            <div class="journal-card">
+
+                <h2>
+                    End-of-Day Report
+                </h2>
+
+                <div id="endOfDayReport">
+                    Add today's data to generate your report.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             WELLNESS
+        ================================================= -->
+
+        <section id="wellnessPage"
+                 class="page">
+
+            <div class="page-header">
+
+                <span class="section-label">
+                    PERSONAL WELLNESS
+                </span>
+
+                <h1>
+                    Wellness Center
+                </h1>
+
+                <p>
+                    Review your lifestyle balance.
+                </p>
+
+            </div>
+
+
+            <div class="wellness-main-card">
+
+                <div class="wellness-score-big">
+
+                    <span id="wellnessScore">
+                        0
+                    </span>
+
+                    <small>
+                        /100
+                    </small>
+
+                </div>
+
+
+                <div>
+
+                    <span class="section-label">
+                        WELLNESS SCORE
+                    </span>
+
+                    <h2 id="wellnessStatus">
+                        Start tracking
+                    </h2>
+
+                    <p id="wellnessDescription">
+                        Add activities to generate
+                        your wellness score.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="wellness-suggestions">
+
+                <h2>
+                    <i class="fa-solid fa-lightbulb"></i>
+                    Suggestions
+                </h2>
+
+                <div id="wellnessSuggestions"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     EDIT MODAL
+========================================================= -->
+
+<div id="editModal"
+     class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                Edit Activity
+            </h2>
+
+            <button onclick="closeEditModal()"
+                    class="close-modal">
+                ×
+            </button>
+
+        </div>
+
+
+        <div id="editForm"></div>
+
+
+        <div class="modal-buttons">
+
+            <button class="cancel-btn"
+                    onclick="closeEditModal()">
+                Cancel
+            </button>
+
+            <button class="save-btn"
+                    onclick="saveEditedActivity()">
+                Save Changes
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div id="toastContainer"></div>
+
+
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signOut,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyD8eMcb3lZUhuSlXvrq1PNe9ldVDzlJkoU",
+
+    authDomain:
+        "lifetrack-96fcb.firebaseapp.com",
+
+    projectId:
+        "lifetrack-96fcb",
+
+    storageBucket:
+        "lifetrack-96fcb.firebasestorage.app",
+
+    messagingSenderId:
+        "779006568587",
+
+    appId:
+        "1:779006568587:web:8cd3fae64ece6cdc5a8c8e",
+
+    measurementId:
+        "G-TGMY2R1SRP"
+
+};
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+const firebaseApp =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(firebaseApp);
+
+
+const provider =
+    new GoogleAuthProvider();
+
+
+provider.setCustomParameters({
+
+    prompt:
+        "select_account"
+
+});
+
+
+/* =========================================================
+   LOCAL FALLBACK AVATAR
+========================================================= */
+
+function createAvatarDataURL(label) {
+
+    const initials =
+        String(label || "User")
+            .trim()
+            .split(/\s+/)
+            .slice(0, 2)
+            .map(
+                word =>
+                    word
+                        .charAt(0)
+                        .toUpperCase()
+            )
+            .join("") || "U";
+
+
+    const svg = `
+
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="96"
+            height="96"
+            viewBox="0 0 96 96"
+        >
+
+            <rect
+                width="96"
+                height="96"
+                rx="48"
+                fill="#0f2740"
+            />
+
+            <circle
+                cx="48"
+                cy="34"
+                r="17"
+                fill="#9fb0c5"
+            />
+
+            <path
+                d="M18 84c4-18 16-27 30-27s26 9 30 27"
+                fill="#9fb0c5"
+            />
+
+            <text
+                x="48"
+                y="92"
+                text-anchor="middle"
+                font-family="Arial"
+                font-size="1"
+                fill="white"
+            >
+                ${initials}
+            </text>
+
+        </svg>
+
+    `;
+
+
+    return (
+        "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(svg)
+    );
+
+}
+
+
+/* =========================================================
+   GOOGLE LOGIN
+========================================================= */
+
+window.loginWithGoogle =
+    async function () {
+
+        try {
+
+            const result =
+                await signInWithPopup(
+                    auth,
+                    provider
+                );
+
+
+            const user =
+                result.user;
+
+
+            /*
+             * Gmail restriction
+             */
+
+            if (
+                !user.email ||
+                !user.email
+                    .toLowerCase()
+                    .endsWith("@gmail.com")
+            ) {
+
+                await signOut(auth);
+
+                alert(
+                    "Please use a Gmail account ending with @gmail.com."
+                );
+
+                return;
+
+            }
+
+
+            console.log(
+                "Google login successful:",
+                user.email
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Google Login Error:",
+                error
+            );
+
+
+            alert(
+                "Google login failed.\n\n" +
+                error.message
+            );
+
+        }
+
+    };
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+window.logoutUser =
+    async function () {
+
+        try {
+
+            await signOut(auth);
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Logout error:",
+                error
+            );
+
+        }
+
+    };
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    function (user) {
+
+        const loginScreen =
+            document.getElementById(
+                "loginScreen"
+            );
+
+
+        const app =
+            document.getElementById(
+                "lifeTrackApp"
+            );
+
+
+        if (user) {
+
+            /*
+             * Gmail-only check
+             */
+
+            if (
+                user.email &&
+                !user.email
+                    .toLowerCase()
+                    .endsWith("@gmail.com")
+            ) {
+
+                signOut(auth);
+
+                return;
+
+            }
+
+
+            window.currentFirebaseUser =
+                user;
+
+
+            document.body.classList.add(
+                "user-logged-in"
+            );
+
+
+            loginScreen.style.display =
+                "none";
+
+
+            app.style.display =
+                "block";
+
+
+            /* USER NAME */
+
+            const name =
+                document.getElementById(
+                    "loggedUserName"
+                );
+
+
+            name.textContent =
+                user.displayName ||
+                "LifeTrack User";
+
+
+            /* USER EMAIL */
+
+            const email =
+                document.getElementById(
+                    "loggedUserEmail"
+                );
+
+
+            email.textContent =
+                user.email ||
+                "";
+
+
+            /* =================================================
+               PROFILE PHOTO FIX
+            ================================================= */
+
+            const photo =
+                document.getElementById(
+                    "loggedUserPhoto"
+                );
+
+
+            /*
+             * Important for Google hosted images.
+             */
+
+            photo.referrerPolicy =
+                "no-referrer";
+
+
+            /*
+             * Local fallback.
+             */
+
+            const fallbackAvatar =
+                createAvatarDataURL(
+                    user.displayName ||
+                    user.email ||
+                    "User"
+                );
+
+
+            /*
+             * If Google image cannot load,
+             * use fallback.
+             */
+
+            photo.onerror =
+                function () {
+
+                    this.onerror = null;
+
+                    this.src =
+                        fallbackAvatar;
+
+                };
+
+
+            /*
+             * Use Google photo when available.
+             */
+
+            if (user.photoURL) {
+
+                photo.src =
+                    user.photoURL;
+
+            }
+
+            else {
+
+                photo.src =
+                    fallbackAvatar;
+
+            }
+
+
+            /*
+             * Tell script.js authentication
+             * is ready.
+             */
+
+            window.dispatchEvent(
+
+                new CustomEvent(
+                    "lifetrack-auth-ready",
+                    {
+                        detail: {
+                            user:
+                                user
+                        }
+                    }
+                )
+
+            );
+
+        }
+
+        else {
+
+            window.currentFirebaseUser =
+                null;
+
+
+            document.body.classList.remove(
+                "user-logged-in"
+            );
+
+
+            loginScreen.style.display =
+                "flex";
+
+
+            app.style.display =
+                "none";
+
+
+            window.dispatchEvent(
+
+                new CustomEvent(
+                    "lifetrack-auth-ready",
+                    {
+                        detail: {
+                            user:
+                                null
+                        }
+                    }
+                )
+
+            );
+
+        }
+
+    }
+
+);
+
+</script>
+
+
+<!-- MAIN JAVASCRIPT -->
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
